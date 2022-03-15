@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Stack, Box, Grid, Typography, Skeleton } from "@mui/material";
 import axios from "axios";
+import { getPokemonsAction } from "../../redux/Pokemon/reducer";
 
 const ListPokemons = () => {
   const [pokemons, setPokemons] = useState([]);
+  // const dispatch = useDispatch();
 
   useEffect(() => {
     axios
@@ -16,6 +19,18 @@ const ListPokemons = () => {
         // console.log(error);
       });
   }, []);
+
+  // useEffect(() => {
+  //   const getPokemons = async () => {
+  //     const response = await dispatch(getPokemonsAction());
+  //     console.log(" response ");
+  //     console.log(response);
+  //     if (response) {
+  //       setPokemons(response.payload.results);
+  //     }
+  //   };
+  //   getPokemons();
+  // }, [dispatch]);
 
   const List = () => {
     return (
