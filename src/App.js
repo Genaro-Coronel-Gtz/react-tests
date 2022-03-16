@@ -1,5 +1,5 @@
-import ListPokemons from "./pages/PokemonList";
-import CatFact from "./pages/CatFact";
+import ListPokemons from "pages/PokemonList";
+import CatFact from "pages/CatFact";
 
 function App() {
   return (

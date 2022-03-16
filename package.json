@@ -16,6 +16,7 @@
     "react-dom": "^17.0.2",
     "react-redux": "^7.2.6",
     "react-scripts": "5.0.0",
+    "redux-mock-store": "^1.5.4",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -50,7 +51,10 @@
   "jest": {
     "resetMocks": false,
     "collectCoverageFrom": [
-      "src/**/{!(ignore-me),}.js"
+      "src/**/*.{js,jsx}",
+      "!<rootDir>/node_modules/",
+      "!<rootDir>/src/utils/*.{js,jsx}",
+      "!<rootDir>/src/redux/**/*.{js,jsx}"
     ]
   },
   "babel": {

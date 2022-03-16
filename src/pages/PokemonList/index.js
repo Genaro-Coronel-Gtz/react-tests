@@ -1,36 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Stack, Box, Grid, Typography, Skeleton } from "@mui/material";
-import axios from "axios";
-import { getPokemonsAction } from "../../redux/Pokemon/reducer";
+import { getPokemonsAction } from "redux/Pokemon/reducer";
 
 const ListPokemons = () => {
   const [pokemons, setPokemons] = useState([]);
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    axios
-      .get("https://pokeapi.co/api/v2/pokemon?limit=10")
-      .then((res) => {
-        setPokemons(res.data.results);
-      })
-      .catch((error) => {
-        console.log(" error fetching pokemon data");
-        // console.log(error);
-      });
-  }, []);
+    const getPokemons = async () => {
+      const response = await dispatch(getPokemonsAction());
 
-  // useEffect(() => {
-  //   const getPokemons = async () => {
-  //     const response = await dispatch(getPokemonsAction());
-  //     console.log(" response ");
-  //     console.log(response);
-  //     if (response) {
-  //       setPokemons(response.payload.results);
-  //     }
-  //   };
-  //   getPokemons();
-  // }, [dispatch]);
+      if (response && response.payload) {
+        setPokemons(response.payload.results);
+      }
+    };
+    getPokemons();
+  }, [dispatch]);
 
   const List = () => {
     return (

@@ -13,8 +13,8 @@ const CatFact = () => {
           setCatFact(res.data.fact);
         })
         .catch((error) => {
-          console.log(" error ");
-          console.log(error);
+          console.log(" error in fetch cat fact data ");
+          // console.log(error);
         });
     };
 

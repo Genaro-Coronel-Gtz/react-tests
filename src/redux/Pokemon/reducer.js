@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { statusTypes } from "../../helpers/store";
+import { statusTypes } from "helpers/store";
 import { getPokemons } from "./actions";
 
 export const getPokemonsAction = createAsyncThunk(
