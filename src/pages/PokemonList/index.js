@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Stack, Box, Grid, Typography, Skeleton } from "@mui/material";
 import { getPokemonsAction } from "redux/Pokemon/reducer";
 
@@ -34,7 +34,7 @@ const ListPokemons = () => {
                 sx={{ border: "1px dashed info" }}
                 key={index}
               >
-                <Stack dircetion="row">
+                <Stack direction="row">
                   <Typography fontSize={20} color="green">
                     {pokemon.name}
                   </Typography>
