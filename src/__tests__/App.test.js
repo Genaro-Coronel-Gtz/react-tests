@@ -1,8 +1,8 @@
 /* eslint-disable testing-library/no-unnecessary-act */
-import { screen } from "@testing-library/react";
+import { fireEvent, screen, cleanup, waitFor } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
 import { UpAxiosMock, DownAxiosMock } from "utils/axios-fake-wrapper";
-import renderApp from "utils/test-helper";
+import visit from "utils/test-helper";
 
 // beforeAll(() => {
 //   // Este metodo se puede utilizar cuando solo se requiere testear que funcionen
@@ -12,32 +12,62 @@ import renderApp from "utils/test-helper";
 
 afterEach(() => {
   DownAxiosMock();
+  cleanup();
 });
 
-test("Verify page and componentes load correctly", async () => {
+test("Verify main page loads correctly", async () => {
   UpAxiosMock({ answerType: 200 });
 
   await act(async () => {
-    renderApp();
+    visit("/", {});
   });
 
-  const title = screen.getByText(/React Test App/i);
-  let pokemonList = screen.getByTestId("pokemon-list");
-  let catFact = screen.getByTestId("cat-fact");
+  const title = screen.getByText(/Heroes App/i);
+  let movieList = screen.getByTestId("movie-list");
 
   expect(title).toBeInTheDocument();
-  expect(pokemonList).toBeInTheDocument();
-  expect(catFact).toBeInTheDocument();
+  expect(movieList).toBeInTheDocument();
 });
 
-test("Fail fetch pokemons", async () => {
+test("Verify detail page loads correctly", async () => {
+  UpAxiosMock({ answerType: 200 });
+
+  await act(async () => {
+    visit("/detail/tt2465238", {});
+  });
+
+  let movieDetail = screen.getByTestId("movie-detail");
+
+  expect(movieDetail).toBeInTheDocument();
+});
+
+test("Transition to detail page", async () => {
+  UpAxiosMock({ answerType: 200 });
+
+  await act(async () => {
+    visit("/", {});
+  });
+
+  let detailButton = screen.getByTestId("navigate-to-detail-btn-tt2465238");
+
+  expect(detailButton).toBeInTheDocument();
+
+  fireEvent.click(detailButton);
+
+  await waitFor(() => {
+    const detail = screen.getByTestId("movie-detail");
+    expect(detail).toBeInTheDocument();
+  });
+});
+
+test("Fail fetch detail movie", async () => {
   UpAxiosMock({ answerType: 400 });
 
   await act(async () => {
-    renderApp();
+    visit("/detail/tt2465238", {});
   });
 
-  let pokemonList = screen.getByTestId("pokemon-loading");
+  let movieDetail = screen.getByTestId("movie-loading");
 
-  expect(pokemonList).toBeInTheDocument();
+  expect(movieDetail).toBeInTheDocument();
 });

@@ -1,32 +1,32 @@
-import pokemon from "./Responses/PokemonsResponse";
-import catfact from "./Responses/CatFactResponse";
-import pokemonError from "./Responses/PokemonsResponseError";
+import movies from "./Responses/MoviesResponse";
+import detail from "./Responses/MovieDetailResponse";
+import movieDetailError from "./Responses/MovieDetailResponseError";
 
 let services = [];
 
 function SeedService(url, method, status) {
   if (
-    pokemon.url === url &&
-    pokemon.method === method &&
-    pokemon.status === status
+    movies.url === url &&
+    movies.method === method &&
+    movies.status === status
   ) {
-    services.push(pokemon);
+    services.push(movies);
   }
 
   if (
-    catfact.url === url &&
-    catfact.method === method &&
-    catfact.status === status
+    detail.url === url &&
+    detail.method === method &&
+    detail.status === status
   ) {
-    services.push(catfact);
+    services.push(detail);
   }
 
   if (
-    pokemonError.url === url &&
-    pokemonError.method === method &&
-    pokemonError.status === status
+    movieDetailError.url === url &&
+    movieDetailError.method === method &&
+    movieDetailError.status === status
   ) {
-    services.push(pokemonError);
+    services.push(movieDetailError);
   }
 }
 

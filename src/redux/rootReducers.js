@@ -1,9 +1,10 @@
 import { combineReducers } from "redux";
-
-import pokemon from "./Pokemon/reducer";
+import { routerReducer } from "react-router-redux";
+import movies from "./Movies/reducer";
 
 const rootReducers = combineReducers({
-  pokemon,
+  routing: routerReducer,
+  movies,
 });
 
 export default rootReducers;

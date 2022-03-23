@@ -1,3 +1,7 @@
+import { statusTypes } from "helpers/store";
+
 export const initialState = {
-  pokemons: [],
+  status: statusTypes.initial,
+  movies: [],
+  detail: null,
 };

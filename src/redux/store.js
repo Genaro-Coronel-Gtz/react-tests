@@ -1,7 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import throttle from "lodash/throttle";
+import { routerMiddleware } from "react-router-redux";
+import { createBrowserHistory } from "history";
 import thunk from "redux-thunk";
 import rootReducers from "./rootReducers";
+
+export const history = createBrowserHistory();
 
 const loadState = () => {
   try {
@@ -33,7 +37,7 @@ const preloadedState = loadState();
 
 const store = configureStore({
   reducer: rootReducers,
-  middleware: [thunk],
+  middleware: [thunk, routerMiddleware(history)],
   devTools:
     process.env.NODE_ENV !== "production" &&
     window.__REDUX_DEVTOOLS_EXTENSION__,
