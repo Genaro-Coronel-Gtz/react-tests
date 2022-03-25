@@ -19,15 +19,14 @@
     "react-router-redux": "^4.0.8",
     "react-scripts": "5.0.0",
     "redux-mock-store": "^1.5.4",
-    "use-query-params": "^1.2.3",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "tests": "react-scripts test",
+    "tests": "react-scripts test --watchAll",
     "eject": "react-scripts eject",
-    "coverage": "react-scripts test --coverage"
+    "coverage": "react-scripts test --coverage --watchAll"
   },
   "eslintConfig": {
     "extends": [
@@ -56,6 +55,7 @@
     "collectCoverageFrom": [
       "src/**/*.{js,jsx}",
       "!<rootDir>/node_modules/",
+      "!<rootDir>/src/utils/**/*.{js,jsx}",
       "!<rootDir>/src/utils/*.{js,jsx}",
       "!<rootDir>/src/redux/**/*.{js,jsx}"
     ]
